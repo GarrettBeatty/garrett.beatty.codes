@@ -18,7 +18,7 @@ blog = "blog/:slug/"
 [params]
 dateform = "Jan 2, 2006"
 dateformfull = "Mon Jan 2 2006 15:04:05 MST"
-description = "Blog"
+description = "Website"
 copyright = "Copyright © {year} Garrett Beatty"
 # copyrightUrl = "https://creativecommons.org/licenses/by-sa/4.0/"
 logofile = ""
@@ -38,7 +38,7 @@ resume = "GarrettBeattyResume.pdf"
 #facebook = "facebook_id"
 #instagram = "instagram_id"
 #itch_io = "itch_io_id"
-social_banner = "img/banner.png"
+social_banner = ""
 usesmallsummarycard = true
 posts_navigation = true
 # issoHost = "comments.domain.tld:1234"

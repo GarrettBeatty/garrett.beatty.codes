@@ -2,4 +2,4 @@
 title = "Home"
 +++
 
-Welcome to my website!
+Welcome to **gbt.codes**!
