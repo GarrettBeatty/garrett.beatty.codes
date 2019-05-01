@@ -61,6 +61,12 @@
             </a>
         {{ end }}
 
+        {{ if .Site.Params.resume }}
+        <a href="/{{ .Site.Params.resume }}" rel=me target="_blank">
+            <img class="icon" src="{{ .Site.BaseURL }}img/doc.svg" alt="resume" />
+        </a>
+        {{ end }}
+
         {{ if .Site.Params.twitter }}
             <a href="https://twitter.com/{{ .Site.Params.twitter }}" rel=me target="_blank">
                 <img class="icon" src="{{ .Site.BaseURL }}img/twitter.svg" alt="twitter" />
