@@ -3,10 +3,9 @@ date = "2015-08-22"
 title = "Publications"
 +++
 
-_With this theme, it is possible to add small sections that only contains one page like this. It will automatically appears in the header, at the end._
-
-Along with [Ford Prefect](https://en.wikipedia.org/wiki/Ford_Prefect_\(character\)), Dent barely escapes the Earth's destruction as it is demolished to make way for a *hyperspace bypass*. Arthur spends the next several years, still wearing his dressing gown, helplessly launched from crisis to crisis while trying to straighten out his lifestyle.  
+Garrett Beatty, Ethan Kochis, and Michael Bloodgood. **The Use of Unlabeled Data versus Labeled Data for 
+Stopping Active Learning for Text Classification**. In *Proceedings of the 2019 IEEE 13th International Conference
+ on Semantic Computing (ICSC)*, pages 287-294, Newport Beach, CA, USA, January 2019. 
  
-> He rather enjoys tea, but seems to have trouble obtaining it in the far reaches of the galaxy.  
- 
-In time, he learns how to fly and carves a niche for himself as a sandwich-maker.
+Garrett Beatty, Ethan Kochis, and Michael Bloodgood. **Impact of Batch Size on Stopping Active Learning for Text Classification**. 
+In *Proceedings of the 2018 IEEE 12th International Conference on Semantic Computing (ICSC)*, pages 306-307, Laguna Hills, CA, USA, January 2018.

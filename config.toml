@@ -1,6 +1,6 @@
 baseurl = "https://gbt.codes/"
 theme = "cocoa-eh"
-builddrafts = true
+builddrafts = false
 canonifyurls = true
 contentdir = "content"
 languageCode = "en-US"
@@ -8,7 +8,7 @@ layoutdir = "layouts"
 publishdir = "public"
 author = "Garrett Beatty"
 title = "Garrett Beatty"
-disqusshortname = "gbt-codes"
+disqusshortname = "https-gbt-codes"
 pluralizelisttitles = false
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
