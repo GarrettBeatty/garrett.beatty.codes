@@ -1,5 +1,5 @@
 ---
-title: "Creating a subdomain for a blog using Google Domains"
+title: "Map a subdomain to another domain for a blog using Google Domains"
 date: 2019-05-01T19:39:42-04:00
 draft: false
 ---
