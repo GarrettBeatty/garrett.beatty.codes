@@ -1,7 +1,7 @@
 ---
 title: "1: Two Sum"
 date: 2021-04-01T19:39:42-04:00
-draft: true
+draft: false
 ---
 
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
