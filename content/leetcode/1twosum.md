@@ -16,16 +16,16 @@ You can return the answer in any order.
 ### Solution
 
 ```
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        m = {}
+def twoSum(self, nums: List[int], target: int) -> List[int]:
+    m = {}
+    a = 0
+    
+    for i in range(len(nums)):
+        num = nums[i]
         
-        for i in range(len(nums)):
-            num = nums[i]
-            
-            if target - num in m:
-                return [m[target - num], i]
-            m[num] = i
-        
+        if target - num in m:
+            return [m[target - num], i]
+        m[num] = i
+    
 
 ```
