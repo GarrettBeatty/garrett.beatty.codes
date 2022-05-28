@@ -1,4 +1,4 @@
-baseurl = "https://gbt.codes/"
+baseurl = "https://garrett.beatty.codes/"
 theme = "cocoa-eh"
 builddrafts = false
 canonifyurls = true
@@ -8,7 +8,7 @@ layoutdir = "layouts"
 publishdir = "public"
 author = "Garrett Beatty"
 title = "Garrett Beatty"
-disqusshortname = "https-gbt-codes"
+disqusshortname = "https-garrett-beatty-codes"
 pluralizelisttitles = false
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
@@ -33,7 +33,7 @@ share = true
 # example: share_on_googleplus = false
 latestpostcount = 5
 github = "GarrettBeatty"
-email = "garrett@gbt.codes"
+email = "garrett@beatty.codes"
 linkedin = "garrett-beatty"
 resume = "GarrettBeattyResume.pdf"
 #twitter = "example"
