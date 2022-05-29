@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-      - name: Setup Docsy
+      - name: Setup theme
         run: sudo npm install -D --save autoprefixer && sudo npm install -D --save postcss && sudo npm install -D --save postcss-cli
       - name: Build And Deploy
         id: builddeploy
@@ -53,6 +53,7 @@ jobs:
           app_location: ${{ env.APP_LOCATION }}
           api_location: ${{ env.API_LOCATION }}
           app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
+          app_build_command: "hugo"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
