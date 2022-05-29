@@ -1,61 +1,34 @@
-baseurl = "https://garrett.beatty.codes/"
-theme = "cocoa-eh"
-builddrafts = false
-canonifyurls = true
-contentdir = "content"
-languageCode = "en-US"
-layoutdir = "layouts"
-publishdir = "public"
-author = "Garrett Beatty"
-title = "Garrett Beatty"
-disqusshortname = "https-garrett-beatty-codes"
-pluralizelisttitles = false
-disableKinds = ["taxonomy", "taxonomyTerm"]
-
-[permalinks]
-blog = "blog/:slug/"
-leetcode = "leetcode/:slug/"
-
+baseurl                  = "https://garrett.beatty.codes"           # Your domain name
+languageCode             = "en-us"
+defaultContentLanguage   = "en"
+isMultilingual           = false
+title                    = "Garrett Beatty"
+theme                    = "sam"    # pull in theme as hugo module 
+pygmentsStyle            = "monokai"                        # https://help.farbox.com/pygments.html
+pygmentsCodefences       = true
 
 [params]
-dateform = "Jan 2, 2006"
-dateformfull = "Mon Jan 2 2006 15:04:05 MST"
-description = "Website"
-copyright = "Copyright © {year} Garrett Beatty"
-# copyrightUrl = "https://creativecommons.org/licenses/by-sa/4.0/"
-logofile = ""
-faviconfile = ""
-highlightjs = true
-progressively = true
-share = true
-# Share to googleplus, twitter, fb, linkedin by default
-# disable by setting share_on_<social network> = false
-# example: share_on_googleplus = false
-latestpostcount = 5
-github = "GarrettBeatty"
-email = "garrett@beatty.codes"
-linkedin = "garrett-beatty"
-resume = "GarrettBeattyResume.pdf"
-#twitter = "example"
-#facebook = "facebook_id"
-#instagram = "instagram_id"
-#itch_io = "itch_io_id"
-social_banner = ""
-usesmallsummarycard = true
-posts_navigation = true
-# issoHost = "comments.domain.tld:1234"
-#githubRepo = "GarrettBeatty/gbt.codes/tree/master"
-small_banner_logo = false
+    homepage             = "Home"                           # What to call the home page link, link will not be rendered if empty
+    footerText           = "Garrett Beatty"
 
-[params.colors]
-identifier = "#527fc1f"
-identifier_dark = "#1a3152"
-trivial = "#6a7a8b"
-foreground = "#181d2a"
-background = "#f9f9f9"
-background_dark = "#393D3F"
-code = "#FDFDFF"
-type = "#F71735"
-special = "#B388EB"
-value = "#3E92CC"
-statement = "#D8973C"
+[[params.videoBackground.sources]]
+    source  = "/video.mp4"
+    type    = "video/mp4"
+    poster  = "/background.png"
+[params.videoBackground]
+    overlay = "rgba(0, 0, 0, 0.4)" # optional
+
+[[params.mainMenu]]
+    link = "GarrettBeattyResume.pdf"
+    text = "Resume"
+
+[[params.mainMenu]]
+    link = "publications"
+    text = "Publications"
+
+[[params.mainMenu]]
+    link = "projects"
+    text = "Projects"
+
+[imaging]
+    quality = 75
