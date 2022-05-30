@@ -7,6 +7,3 @@
 [submodule "themes/pulp"]
 	path = themes/pulp
 	url = https://github.com/koirand/pulp.git
-[submodule "themes/sam"]
-	path = themes/sam
-	url = https://github.com/victoriadrake/hugo-theme-sam.git
