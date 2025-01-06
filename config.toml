@@ -30,9 +30,5 @@ pygmentsCodefences       = true
     link = "projects"
     text = "Projects"
 
-[[params.mainMenu]]
-    link = "apps/reader-for-arxiv/privacy"
-    text = "Privacy Policy"
-
 [imaging]
     quality = 75
