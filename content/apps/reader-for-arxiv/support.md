@@ -8,9 +8,9 @@ title = "Support - Reader for arXiv"
 
 If you need help with Reader for arXiv or have any questions, please feel free to reach out:
 
-- **Email:** garrett@beatty.codes
+- **Email:** arxiv@beatty.codes
 
 ### Feature Requests
-Have an idea for improving the app? Please submit your suggestions through our GitHub issues page or email us directly.
+Have an idea for improving the app? Please submit your suggestions through email.
 
 [Privacy Policy](/apps/reader-for-arxiv/privacy) 
