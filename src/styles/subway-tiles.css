@@ -98,9 +98,22 @@
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
-  .subway-tile {
-    width: 150px;
-    height: 75px;
+  /* Hide all tile-related elements */
+  .subway-tiles,
+  .subway-tile,
+  .subway-tile-pattern,
+  .station-wall,
+  .glossy-tile,
+  .grout-lines {
+    display: none !important;
+  }
+
+  /* Remove any tile backgrounds */
+  [class*="subway-tile"],
+  [class*="station-wall"],
+  [class*="grout-lines"] {
+    background-image: none !important;
+    background-color: transparent !important;
   }
 }
 
