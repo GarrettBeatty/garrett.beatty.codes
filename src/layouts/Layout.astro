@@ -3,7 +3,6 @@ import '../styles/subway.css';
 import '../styles/subway-tiles.css';
 import '../styles/subway-elements.css';
 import { ViewTransitions } from 'astro:transitions';
-import SubwayCar from '../components/SubwayCar.astro';
 import ArrivalBoard from '../components/ArrivalBoard.astro';
 
 interface Props {
@@ -29,26 +28,29 @@ const pageName = currentPath === '/' ? 'Home' :
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions fallback="none" />
+    
+    <!-- Add subway sounds -->
+    <audio id="subway-doors" class="subway-sound" preload="auto">
+      <source src="/sounds/subway-doors.mp3" type="audio/mpeg">
+    </audio>
   </head>
   <body>
     <div class="subway-container">
       <header class="subway-header" transition:persist>
         <div class="mta-logo">GB</div>
         <nav class="subway-nav">
-          <a href="/" class="subway-line line-yellow" data-internal-link>Home</a>
-          <a href="/projects" class="subway-line line-blue" data-internal-link>Projects</a>
-          <a href="/publications" class="subway-line line-green" data-internal-link>Publications</a>
+          <a href="/" class="subway-line line-yellow" data-internal-link data-astro-prefetch="hover">Home</a>
+          <a href="/projects" class="subway-line line-blue" data-internal-link data-astro-prefetch="hover">Projects</a>
+          <a href="/publications" class="subway-line line-green" data-internal-link data-astro-prefetch="hover">Publications</a>
           <a href="/GarrettBeattyResume.pdf" class="subway-line line-red">Resume</a>
         </nav>
       </header>
 
       <ArrivalBoard stationName={pageName} />
 
-      <main class="subway-main" transition:animate="slide">
+      <main class="subway-main">
         <slot />
       </main>
-
-      <div id="subway-car-container"></div>
 
       <footer class="subway-footer" transition:persist>
         <div class="subway-track"></div>
@@ -76,95 +78,42 @@ const pageName = currentPath === '/' ? 'Home' :
   }
 
   .subway-main {
-    transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform: translateX(0);
-  }
-
-  :global(.transition-active) .subway-main {
-    transform: translateX(100vw);
-  }
-
-  .service-status-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
+    position: relative;
   }
 </style>
 
 <script>
+  import gsap from 'gsap';
+  import { Flip } from 'gsap/Flip';
+
+  gsap.registerPlugin(Flip);
+
   let isTransitioning = false;
   let currentPath = window.location.pathname;
+  let nextPageContent = null;
 
-  // Sound effects
-  const subwayChime = document.getElementById('subway-chime') as HTMLAudioElement;
-  const subwayDoors = document.getElementById('subway-doors') as HTMLAudioElement;
-
-  function createSubwayCar() {
-    const car = document.createElement('div');
-    car.innerHTML = `
-      <svg viewBox="0 0 400 120" class="car">
-        <rect x="20" y="20" width="360" height="80" rx="8" class="body" fill="#FFD700" stroke="#333" stroke-width="2"/>
-        <rect x="35" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <rect x="85" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <rect x="135" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <rect x="185" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <rect x="235" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <rect x="285" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <rect x="325" y="30" width="40" height="35" rx="4" class="window" fill="#1a1a1a"/>
-        <circle cx="200" cy="40" r="15" fill="#333"/>
-        <text x="200" y="45" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="bold">GB</text>
-      </svg>
-    `;
-    car.style.cssText = `
-      position: fixed;
-      top: 50%;
-      transform: translate(-420px, -50%);
-      width: 400px;
-      z-index: 1000;
-      pointer-events: none;
-      transition: transform 2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    `;
-    return car;
-  }
-
-  function startTransition() {
-    isTransitioning = true;
-    document.body.classList.add('transition-active');
-    const container = document.getElementById('subway-car-container');
-    const car = createSubwayCar();
-    container.appendChild(car);
-    
-    // Play sound effects
-    subwayChime?.play();
-    setTimeout(() => subwayDoors?.play(), 500);
-    
-    requestAnimationFrame(() => {
-      car.style.transform = `translate(calc(100vw + 420px), -50%)`;
-    });
-  }
-
-  function endTransition() {
-    document.body.classList.remove('transition-active');
-    isTransitioning = false;
-    currentPath = window.location.pathname;
-    const container = document.getElementById('subway-car-container');
-    container.innerHTML = '';
+  // Preload function
+  async function preloadPage(url) {
+    try {
+      const response = await fetch(url);
+      const text = await response.text();
+      const parser = new DOMParser();
+      return parser.parseFromString(text, 'text/html');
+    } catch (error) {
+      console.error('Error preloading page:', error);
+      return null;
+    }
   }
 
   // Handle internal navigation
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', async (e) => {
     const link = e.target.closest('a[data-internal-link]');
     if (link && link.href) {
       const newPath = new URL(link.href).pathname;
       // Only trigger transition if we're navigating to a different page
       if (newPath !== currentPath) {
         e.preventDefault();
-        startTransition();
-        setTimeout(() => {
-          window.location.href = link.href;
-        }, 1000);
+        startPageTransition(link.href);
       } else {
         // Prevent default when clicking current page
         e.preventDefault();
@@ -172,7 +121,58 @@ const pageName = currentPath === '/' ? 'Home' :
     }
   });
 
+  // Preload pages on hover
+  document.querySelectorAll('a[data-internal-link]').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      const url = link.href;
+      if (url !== window.location.href) {
+        preloadPage(url);
+      }
+    });
+  });
+
+  async function startPageTransition(newUrl) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    // Get all current cards and title
+    const currentCards = document.querySelectorAll('.project-card, .publication-card');
+    const currentTitle = document.querySelector('.station-name');
+    
+    // Create a FLIP state
+    const state = Flip.getState([...currentCards, currentTitle]);
+
+    // Start preloading the next page
+    preloadPage(newUrl);
+
+    // Animate title flipping out
+    gsap.to(currentTitle, {
+      rotationX: 90,
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.in"
+    });
+
+    // Animate all cards flipping out
+    await gsap.to(currentCards, {
+      rotationX: 90,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.in",
+      delay: 0.2 // Start after title begins flipping
+    });
+
+    // Navigate to new page
+    window.location.href = newUrl;
+  }
+
   // Handle transition events
+  document.addEventListener('astro:before-preparation', (e) => {
+    // Preload the next page's content
+    preloadPage(e.to);
+  });
+
   document.addEventListener('astro:before-swap', () => {
     if (isTransitioning) {
       document.body.classList.add('transition-active');
@@ -180,21 +180,69 @@ const pageName = currentPath === '/' ? 'Home' :
   });
 
   document.addEventListener('astro:after-swap', () => {
-    requestAnimationFrame(() => {
-      setTimeout(endTransition, 1000);
+    // Get new cards and title
+    const newCards = document.querySelectorAll('.project-card, .publication-card');
+    const newTitle = document.querySelector('.station-name');
+    
+    // Set initial state for new elements
+    gsap.set([newCards, newTitle], {
+      rotationX: -90,
+      opacity: 0
     });
+
+    // Ensure GSAP animations are properly initialized
+    gsap.registerPlugin(Flip);
+
+    // Animate title flipping in
+    gsap.to(newTitle, {
+      rotationX: 0,
+      opacity: 1,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+
+    // Animate new cards flipping in
+    gsap.to(newCards, {
+      rotationX: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.1,
+      delay: 0.2, // Start after title begins flipping
+      ease: "power2.out",
+      onComplete: () => {
+        isTransitioning = false;
+        document.body.classList.remove('transition-active');
+      }
+    });
+
+    // Play doors sound
+    setTimeout(() => {
+      const doors = document.getElementById('subway-doors');
+      doors?.play();
+    }, 300);
+
+    currentPath = window.location.pathname;
   });
 
   // Handle browser back/forward navigation
   window.addEventListener('popstate', () => {
     const newPath = window.location.pathname;
     if (newPath !== currentPath) {
-      startTransition();
+      startPageTransition(window.location.href);
     }
   });
 
   // Emergency intercom handler
   document.querySelector('.emergency-intercom')?.addEventListener('click', () => {
     window.location.href = 'https://www.linkedin.com/in/garrett-beatty/';
+  });
+
+  // Preload initial pages
+  window.addEventListener('load', () => {
+    document.querySelectorAll('a[data-internal-link]').forEach(link => {
+      if (link.href !== window.location.href) {
+        preloadPage(link.href);
+      }
+    });
   });
 </script> 

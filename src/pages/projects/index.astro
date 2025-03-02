@@ -7,46 +7,54 @@ import Layout from '../../layouts/Layout.astro';
     <div class="platform-section">
       <h2>Featured Projects</h2>
       <div class="platform-content">
-        <div class="project-card">
-          <div class="project-header">
-            <span class="route-marker line-blue">2023</span>
-            <h3>Arxiv Explorer</h3>
-          </div>
-          <p class="project-type">
-            Android Application
-          </p>
-          <p class="description">
-            Android application with over 6,000 downloads that allows users to browse, search, and download
-            scientific papers from arxiv.org.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">Java</span>
-            <span class="tech-tag">Butterknife</span>
-            <span class="tech-tag">OkHttp</span>
-            <span class="tech-tag">Sugar ORM</span>
-            <span class="tech-tag">arXiv API</span>
-            <span class="tech-tag">Travis CI</span>
-            <span class="tech-tag">Fastlane</span>
+        <div class="project-card flip-card" data-year="2023">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-header">
+                <span class="route-marker line-blue">2023</span>
+                <h3>Arxiv Explorer</h3>
+              </div>
+              <p class="project-type">
+                Android Application
+              </p>
+              <p class="description">
+                Android application with over 6,000 downloads that allows users to browse, search, and download
+                scientific papers from arxiv.org.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Butterknife</span>
+                <span class="tech-tag">OkHttp</span>
+                <span class="tech-tag">Sugar ORM</span>
+                <span class="tech-tag">arXiv API</span>
+                <span class="tech-tag">Travis CI</span>
+                <span class="tech-tag">Fastlane</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-header">
-            <span class="route-marker line-blue">2022</span>
-            <h3>Steganography Web Application</h3>
-          </div>
-          <p class="project-type">
-            Web Application
-          </p>
-          <p class="description">
-            Web application that allows users encode and decode secret messages within an image.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Heroku</span>
-            <span class="tech-tag">Travis CI</span>
-            <span class="tech-tag">numpy</span>
+        <div class="project-card flip-card" data-year="2022">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-header">
+                <span class="route-marker line-blue">2022</span>
+                <h3>Steganography Web Application</h3>
+              </div>
+              <p class="project-type">
+                Web Application
+              </p>
+              <p class="description">
+                Web application that allows users encode and decode secret messages within an image.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">Heroku</span>
+                <span class="tech-tag">Travis CI</span>
+                <span class="tech-tag">numpy</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -143,4 +151,64 @@ import Layout from '../../layouts/Layout.astro';
     font-size: 0.9rem;
     border: 1px solid var(--subway-blue);
   }
-</style> 
+
+  .flip-card {
+    perspective: 1000px;
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transform-origin: top;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .card-front {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .route-marker {
+    background: var(--subway-blue);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #fff;
+    display: inline-block;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.flip-card');
+    
+    cards.forEach((card, index) => {
+      gsap.to(card, {
+        rotationX: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom-=100",
+          end: "top center",
+          toggleActions: "play none none reverse"
+        },
+        delay: index * 0.2 // Stagger the animations
+      });
+    });
+  });
+</script> 
