@@ -8,11 +8,26 @@
   border-radius: 4px;
   text-align: center;
   animation: flicker 2s infinite;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @keyframes flicker {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.95; }
+}
+
+.arrival-board-time {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.arrival-board-message {
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Subway Line Colors */
@@ -203,43 +218,149 @@
   color: var(--subway-white);
 }
 
+/* Station Information */
+.station-information {
+  background: var(--subway-black);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.station-information h2 {
+  color: var(--subway-yellow);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.station-description {
+  color: var(--subway-text);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.line-info {
+  background: var(--subway-tile);
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 0.75rem 0;
+  border-left: 4px solid;
+  text-align: left;
+}
+
+.line-info.blue-line {
+  border-left-color: var(--subway-blue);
+}
+
+.line-info.green-line {
+  border-left-color: var(--subway-green);
+}
+
+.line-info.red-line {
+  border-left-color: var(--subway-red);
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+  .arrival-board {
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .arrival-board-message {
+    padding: 0 0.5rem;
+  }
+
+  .station-information {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .station-information h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .station-description {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .line-info {
+    padding: 0.875rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
   .station-name {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
   }
 
   .project-card,
   .publication-card {
     padding: 1rem;
     margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .project-title,
   .publication-title {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
+    text-align: left;
   }
 
   .project-description,
   .publication-description {
     font-size: 0.95rem;
     margin-bottom: 0.75rem;
+    text-align: left;
+    padding: 0;
   }
 
   .project-links,
   .publication-links {
     flex-wrap: wrap;
     gap: 0.75rem;
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 480px) {
+  .arrival-board {
+    padding: 0.625rem;
+    font-size: 0.85rem;
+  }
+
+  .station-information {
+    padding: 0.875rem;
+  }
+
+  .station-information h2 {
+    font-size: 1.125rem;
+  }
+
+  .station-description {
+    font-size: 0.9rem;
+  }
+
+  .line-info {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
   .station-name {
     font-size: 1.75rem;
-    margin-bottom: 1rem;
+    margin: 0.75rem 0;
+    padding: 0 0.5rem;
   }
 
   .project-card,
@@ -261,6 +382,7 @@
   .project-date,
   .publication-date {
     font-size: 0.8rem;
+    text-align: left;
   }
 }
 
