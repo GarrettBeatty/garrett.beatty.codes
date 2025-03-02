@@ -135,4 +135,144 @@
   height: 100%;
   background: inherit;
   clip-path: polygon(70% 0, 100% 50%, 70% 100%);
+}
+
+.station-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--subway-yellow);
+  margin-bottom: 2rem;
+  transform-style: preserve-3d;
+}
+
+.project-card,
+.publication-card {
+  background-color: var(--subway-black);
+  border: 2px solid var(--subway-gray);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover,
+.publication-card:hover {
+  transform: translateZ(10px);
+}
+
+.project-title,
+.publication-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--subway-yellow);
+  margin-bottom: 1rem;
+}
+
+.project-description,
+.publication-description {
+  color: var(--subway-white);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.project-date,
+.publication-date {
+  color: var(--subway-gray);
+  font-size: 0.9rem;
+  transform-style: preserve-3d;
+}
+
+.project-links,
+.publication-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-link,
+.publication-link {
+  color: var(--subway-yellow);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.project-link:hover,
+.publication-link:hover {
+  color: var(--subway-white);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .station-name {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .project-card,
+  .publication-card {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-title,
+  .publication-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-description,
+  .publication-description {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-links,
+  .publication-links {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .station-name {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-card,
+  .publication-card {
+    padding: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-title,
+  .publication-title {
+    font-size: 1.125rem;
+  }
+
+  .project-description,
+  .publication-description {
+    font-size: 0.9rem;
+  }
+
+  .project-date,
+  .publication-date {
+    font-size: 0.8rem;
+  }
+}
+
+/* Optimize performance on mobile */
+@media (pointer: coarse) {
+  .project-card,
+  .publication-card {
+    transition: none;
+  }
+
+  .project-card:hover,
+  .publication-card:hover {
+    transform: none;
+  }
 } 

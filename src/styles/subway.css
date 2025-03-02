@@ -11,6 +11,8 @@
     --subway-darker: #121212;
     --subway-tile: #2a2a2a;
     --subway-text: #e0e0e0;
+    --header-height: 60px;
+    --footer-height: 100px;
 }
 
 body {
@@ -19,42 +21,60 @@ body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--subway-darker);
     color: var(--subway-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .subway-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .subway-header {
+    background-color: var(--subway-black);
+    height: var(--header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
-    border-bottom: 4px solid var(--subway-yellow);
+    padding: 0 2rem;
+    border-bottom: 2px solid var(--subway-gray);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .mta-logo {
-    font-size: 2.5rem;
+    background-color: var(--subway-black);
+    color: var(--subway-white);
+    font-size: 2rem;
     font-weight: bold;
-    color: var(--subway-yellow);
-    padding: 10px;
-    border: 3px solid var(--subway-yellow);
+    padding: 0.5rem;
+    border: 2px solid var(--subway-white);
     border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .subway-nav {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
+    align-items: center;
 }
 
 .subway-line {
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
     color: var(--subway-black);
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    font-weight: bold;
     transition: transform 0.2s;
 }
 
@@ -62,9 +82,30 @@ body {
     transform: scale(1.05);
 }
 
+.line-yellow {
+    background-color: var(--subway-yellow);
+}
+
+.line-blue {
+    background-color: var(--subway-blue);
+    color: var(--subway-white);
+}
+
+.line-green {
+    background-color: var(--subway-green);
+    color: var(--subway-white);
+}
+
+.line-red {
+    background-color: var(--subway-red);
+    color: var(--subway-white);
+}
+
 .subway-main {
-    margin: 40px 0;
-    min-height: 70vh;
+    flex: 1;
+    padding: 2rem;
+    position: relative;
+    perspective: 1000px;
 }
 
 .subway-map {
@@ -137,14 +178,59 @@ body {
 }
 
 .subway-footer {
-    text-align: center;
-    padding: 20px 0;
-    border-top: 4px solid var(--subway-yellow);
+    background-color: var(--subway-black);
+    min-height: var(--footer-height);
+    padding: 1rem 2rem;
+    border-top: 2px solid var(--subway-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.subway-track {
+    height: 4px;
+    background-color: var(--subway-gray);
+    position: relative;
+}
+
+.service-status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.service-status {
+    font-weight: bold;
+}
+
+.status-good {
+    color: var(--subway-green);
+}
+
+.emergency-intercom {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 2px solid var(--subway-red);
+    color: var(--subway-red);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.emergency-intercom:hover {
+    background-color: var(--subway-red);
+    color: var(--subway-white);
 }
 
 .subway-info {
+    text-align: center;
     color: var(--subway-gray);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
 }
 
 .subway-station-page {
@@ -239,21 +325,106 @@ body {
   to { transform: translateX(0); }
 }
 
-/* Responsive Design */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
     .subway-header {
+        padding: 0 1rem;
         flex-direction: column;
-        gap: 20px;
-        text-align: center;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
     }
 
     .subway-nav {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 0.5rem;
     }
 
     .subway-line {
-        padding: 8px 16px;
+        padding: 0.4rem 0.8rem;
         font-size: 0.9rem;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .subway-main {
+        padding: 1rem;
+    }
+
+    .service-status-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .emergency-intercom {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .subway-footer {
+        padding: 1rem;
+    }
+
+    /* Adjust perspective for mobile */
+    .subway-main {
+        perspective: 2000px;
+    }
+
+    /* Make cards more mobile-friendly */
+    .project-card,
+    .publication-card {
+        width: 100% !important;
+        margin: 1rem 0 !important;
+    }
+
+    /* Adjust station name for mobile */
+    .station-name {
+        font-size: 1.5rem !important;
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    /* Ensure proper spacing for mobile */
+    .subway-container {
+        gap: 1rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .subway-line {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .mta-logo {
+        font-size: 1.5rem;
+        width: 35px;
+        height: 35px;
+    }
+
+    .service-status {
+        font-size: 0.9rem;
+    }
+
+    .subway-info {
+        font-size: 0.8rem;
+    }
+}
+
+/* Handle landscape orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .subway-header {
+        position: relative;
+    }
+
+    .subway-main {
+        padding-top: 0.5rem;
+    }
+
+    .subway-footer {
+        position: relative;
     }
 } 
