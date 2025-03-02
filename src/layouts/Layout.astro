@@ -29,14 +29,6 @@ const pageName = currentPath === '/' ? 'Home' :
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions fallback="none" />
-    
-    <!-- Add subway sounds -->
-    <audio id="subway-chime" class="subway-sound">
-      <source src="/sounds/subway-chime.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="subway-doors" class="subway-sound">
-      <source src="/sounds/subway-doors.mp3" type="audio/mpeg">
-    </audio>
   </head>
   <body>
     <div class="subway-container">

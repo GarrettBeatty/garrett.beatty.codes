@@ -5,14 +5,17 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="Projects - Garrett Beatty">
   <div class="subway-station-page">
     <div class="platform-section">
-      <h2>Arxiv Explorer</h2>
+      <h2>Featured Projects</h2>
       <div class="platform-content">
         <div class="project-card">
           <div class="project-header">
-            <span class="route-marker line-blue">AE</span>
-            <h3>Android Application</h3>
+            <span class="route-marker line-blue">2023</span>
+            <h3>Arxiv Explorer</h3>
           </div>
-          <p>
+          <p class="project-type">
+            Android Application
+          </p>
+          <p class="description">
             Android application with over 6,000 downloads that allows users to browse, search, and download
             scientific papers from arxiv.org.
           </p>
@@ -26,18 +29,16 @@ import Layout from '../../layouts/Layout.astro';
             <span class="tech-tag">Fastlane</span>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="platform-section">
-      <h2>Steganography Web Application</h2>
-      <div class="platform-content">
         <div class="project-card">
           <div class="project-header">
-            <span class="route-marker line-blue">SW</span>
-            <h3>Web Application</h3>
+            <span class="route-marker line-blue">2022</span>
+            <h3>Steganography Web Application</h3>
           </div>
-          <p>
+          <p class="project-type">
+            Web Application
+          </p>
+          <p class="description">
             Web application that allows users encode and decode secret messages within an image.
           </p>
           <div class="tech-stack">
@@ -95,11 +96,16 @@ import Layout from '../../layouts/Layout.astro';
     padding: 2rem;
     color: white;
     border-left: 4px solid var(--subway-blue);
+    margin-bottom: 2rem;
+  }
+
+  .project-card:last-child {
+    margin-bottom: 0;
   }
 
   .project-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1rem;
   }
@@ -108,6 +114,18 @@ import Layout from '../../layouts/Layout.astro';
     margin: 0;
     font-size: 1.4rem;
     color: var(--subway-blue);
+    flex: 1;
+  }
+
+  .project-type {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: var(--subway-text);
+  }
+
+  .description {
+    color: var(--subway-text);
+    margin: 0.5rem 0;
   }
 
   .tech-stack {
