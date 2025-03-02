@@ -1,0 +1,142 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Publications - Garrett Beatty">
+  <div class="subway-station-page">
+    <div class="platform-section">
+      <h2>Conference Papers</h2>
+      <div class="platform-content">
+        <div class="publication-card">
+          <div class="publication-header">
+            <span class="route-marker line-green">2019</span>
+            <h3>The Use of Unlabeled Data versus Labeled Data for Stopping Active Learning for Text Classification</h3>
+          </div>
+          <p class="authors">
+            Garrett Beatty, Ethan Kochis, and Michael Bloodgood
+          </p>
+          <p class="conference">
+            In <em>Proceedings of the 2019 IEEE 13th International Conference on Semantic Computing (ICSC)</em>
+          </p>
+          <p class="details">
+            Pages 287-294, Newport Beach, CA, USA, January 2019
+          </p>
+        </div>
+
+        <div class="publication-card">
+          <div class="publication-header">
+            <span class="route-marker line-green">2018</span>
+            <h3>Impact of Batch Size on Stopping Active Learning for Text Classification</h3>
+          </div>
+          <p class="authors">
+            Garrett Beatty, Ethan Kochis, and Michael Bloodgood
+          </p>
+          <p class="conference">
+            In <em>Proceedings of the 2018 IEEE 12th International Conference on Semantic Computing (ICSC)</em>
+          </p>
+          <p class="details">
+            Pages 306-307, Laguna Hills, CA, USA, January 2018
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .subway-station-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .station-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: #333;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .station-header h1 {
+    font-size: 2.5rem;
+    color: var(--subway-yellow);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .station-header p {
+    font-size: 1.2rem;
+    color: #fff;
+    opacity: 0.9;
+  }
+
+  .platform-section {
+    background: #262626;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .platform-section h2 {
+    color: var(--subway-yellow);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .platform-content {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .publication-card {
+    background: #262626;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: white;
+    border-left: 4px solid var(--subway-green);
+    margin-bottom: 2rem;
+  }
+
+  .publication-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .publication-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .publication-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--subway-green);
+    flex: 1;
+  }
+
+  .authors {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+
+  .conference {
+    color: var(--subway-text);
+    margin: 0.5rem 0;
+  }
+
+  .details {
+    color: var(--subway-gray);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+</style> 

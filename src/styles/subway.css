@@ -1,0 +1,259 @@
+:root {
+    --subway-black: #171717;
+    --subway-yellow: #FCCC0A;
+    --subway-blue: #0039A6;
+    --subway-orange: #FF6319;
+    --subway-green: #00933C;
+    --subway-red: #EE352E;
+    --subway-purple: #B933AD;
+    --subway-gray: #A7A9AC;
+    --subway-dark: #1a1a1a;
+    --subway-darker: #121212;
+    --subway-tile: #2a2a2a;
+    --subway-text: #e0e0e0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--subway-darker);
+    color: var(--subway-text);
+}
+
+.subway-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.subway-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 4px solid var(--subway-yellow);
+}
+
+.mta-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--subway-yellow);
+    padding: 10px;
+    border: 3px solid var(--subway-yellow);
+    border-radius: 50%;
+}
+
+.subway-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.subway-line {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    color: var(--subway-black);
+    transition: transform 0.2s;
+}
+
+.subway-line:hover {
+    transform: scale(1.05);
+}
+
+.subway-main {
+    margin: 40px 0;
+    min-height: 70vh;
+}
+
+.subway-map {
+    position: relative;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 20px 0;
+    min-height: 600px;
+}
+
+.subway-network {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.subway-line-path {
+    position: absolute;
+    height: 8px;
+    background-color: var(--line-color);
+    transform-origin: 0 0;
+}
+
+.station-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: 6px solid var(--station-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.3s;
+    z-index: 2;
+}
+
+.station-dot:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.station-label {
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--subway-black);
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    z-index: 1;
+}
+
+.station-label:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.subway-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid var(--subway-black);
+}
+
+.subway-footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 4px solid var(--subway-yellow);
+}
+
+.subway-info {
+    color: var(--subway-gray);
+    font-size: 0.9rem;
+}
+
+.subway-station-page {
+    background-color: var(--subway-dark);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 20px 0;
+    color: var(--subway-text);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.station-header {
+    border-bottom: 8px solid var(--subway-black);
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    background-color: var(--subway-tile);
+    margin: -40px -40px 40px -40px;
+    padding: 40px;
+    border-radius: 10px 10px 0 0;
+}
+
+.platform-section {
+    background-color: var(--subway-tile);
+    border-radius: 8px;
+    margin: 30px 0;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.platform-content {
+    background-color: var(--subway-dark);
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.platform-content a {
+    color: var(--subway-yellow);
+    text-decoration: none;
+    border-bottom: 2px solid var(--subway-yellow);
+    transition: all 0.3s;
+}
+
+.platform-content a:hover {
+    background-color: var(--subway-yellow);
+    color: var(--subway-black);
+}
+
+.platform-content ul li {
+    background-color: var(--subway-dark);
+    border-left: 6px solid var(--subway-gray);
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.platform-content ul li:hover {
+    background-color: var(--subway-tile);
+    transform: translateX(5px);
+}
+
+.platform-content p {
+    border-left: 4px solid var(--subway-gray);
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+/* View Transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Slide animation */
+::view-transition-old(page) {
+  animation: 0.5s cubic-bezier(0.76, 0, 0.24, 1) both slide-out;
+}
+
+::view-transition-new(page) {
+  animation: 0.5s cubic-bezier(0.76, 0, 0.24, 1) both slide-in;
+}
+
+@keyframes slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .subway-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .subway-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .subway-line {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+} 

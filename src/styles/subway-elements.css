@@ -1,0 +1,138 @@
+/* Subway Arrival Board */
+.arrival-board {
+  background: #000;
+  color: #FFD700;
+  font-family: 'Courier New', monospace;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  text-align: center;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+/* Subway Line Colors */
+.line-yellow { background-color: var(--subway-yellow); }
+.line-blue { background-color: var(--subway-blue); color: white; }
+.line-green { background-color: var(--subway-green); color: white; }
+.line-red { background-color: var(--subway-red); color: white; }
+
+/* Subway Map Elements */
+.interchange-symbol {
+  fill: white;
+  stroke: black;
+  stroke-width: 2;
+}
+
+.you-are-here {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.route-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+/* Interactive Elements */
+.turnstile {
+  width: 60px;
+  height: 60px;
+  background: #333;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.turnstile:hover {
+  transform: rotate(120deg);
+}
+
+/* Footer Elements */
+.subway-track {
+  height: 20px;
+  background: #333;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.subway-track::before,
+.subway-track::after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  background: #666;
+  left: 0;
+  right: 0;
+}
+
+.subway-track::before { top: 4px; }
+.subway-track::after { bottom: 4px; }
+
+.service-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin: 0 0.25rem;
+}
+
+.status-good { background: #00933C; color: white; }
+.status-delay { background: #FFD700; color: black; }
+.status-emergency { background: #EE352E; color: white; }
+
+.emergency-intercom {
+  background: #EE352E;
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.emergency-intercom:hover {
+  background: #cc1c15;
+}
+
+/* Audio Elements */
+.subway-sound {
+  display: none;
+}
+
+/* Wayfinding Elements */
+.wayfinding-arrow {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #000;
+  clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%);
+  margin: 0 0.5rem;
+}
+
+.wayfinding-arrow::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  clip-path: polygon(70% 0, 100% 50%, 70% 100%);
+} 

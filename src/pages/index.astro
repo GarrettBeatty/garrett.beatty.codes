@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubwayMap from '../components/SubwayMap.astro';
+---
+
+<Layout title="Garrett Beatty">
+  <div class="subway-station-page">
+    <div class="platform-section">
+      <div class="platform-content map-container">
+        <SubwayMap />
+      </div>
+    </div>
+
+    <div class="platform-section">
+      <h2>Station Information</h2>
+      <div class="platform-content">
+        <p>
+          Welcome to the main station of my personal website. This interactive space is designed to showcase
+          my work and experience through a NYC subway-inspired interface.
+        </p>
+        <ul>
+          <li>🚇 Projects Line (Blue): Explore my technical projects and applications</li>
+          <li>🚇 Publications Line (Green): Read my academic publications</li>
+          <li>🚇 Resume Express (Red): Direct route to my professional experience</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .subway-station-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .platform-section {
+    background: #262626;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .platform-section:first-child {
+    margin-top: 0;
+  }
+
+  .platform-section h2 {
+    color: var(--subway-yellow);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .platform-content {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    color: #fff;
+  }
+
+  .map-container {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .platform-content p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .platform-content ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .platform-content li {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #262626;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--subway-yellow);
+  }
+</style> 

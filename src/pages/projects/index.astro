@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Projects - Garrett Beatty">
+  <div class="subway-station-page">
+    <div class="platform-section">
+      <h2>Arxiv Explorer</h2>
+      <div class="platform-content">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="route-marker line-blue">AE</span>
+            <h3>Android Application</h3>
+          </div>
+          <p>
+            Android application with over 6,000 downloads that allows users to browse, search, and download
+            scientific papers from arxiv.org.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Butterknife</span>
+            <span class="tech-tag">OkHttp</span>
+            <span class="tech-tag">Sugar ORM</span>
+            <span class="tech-tag">arXiv API</span>
+            <span class="tech-tag">Travis CI</span>
+            <span class="tech-tag">Fastlane</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-section">
+      <h2>Steganography Web Application</h2>
+      <div class="platform-content">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="route-marker line-blue">SW</span>
+            <h3>Web Application</h3>
+          </div>
+          <p>
+            Web application that allows users encode and decode secret messages within an image.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Heroku</span>
+            <span class="tech-tag">Travis CI</span>
+            <span class="tech-tag">numpy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .subway-station-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .platform-section {
+    background: #262626;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .platform-section:first-child {
+    margin-top: 0;
+  }
+
+  .platform-section h2 {
+    color: var(--subway-yellow);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .platform-content {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .project-card {
+    background: #262626;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: white;
+    border-left: 4px solid var(--subway-blue);
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--subway-blue);
+  }
+
+  .tech-stack {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-tag {
+    background: #333;
+    color: var(--subway-text);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--subway-blue);
+  }
+</style> 

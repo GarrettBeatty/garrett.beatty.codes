@@ -1,0 +1,237 @@
+---
+interface Props {}
+
+const stations = [
+  { id: 'home', name: 'Home', x: 250, y: 300, link: '/', lines: ['yellow'] },
+  { id: 'projects', name: 'Projects', x: 450, y: 300, link: '/projects', lines: ['yellow', 'blue'] },
+  { id: 'publications', name: 'Publications', x: 650, y: 300, link: '/publications', lines: ['yellow', 'green'] },
+  { id: 'resume', name: 'Resume', x: 850, y: 300, link: '/GarrettBeattyResume.pdf', lines: ['yellow', 'red'] }
+];
+
+const lines = [
+  { start: 'home', end: 'projects', color: 'var(--subway-yellow)' },
+  { start: 'projects', end: 'publications', color: 'var(--subway-yellow)' },
+  { start: 'publications', end: 'resume', color: 'var(--subway-yellow)' },
+  // Additional colored lines for interchanges
+  { start: 'projects', end: 'projects', color: 'var(--subway-blue)' },
+  { start: 'publications', end: 'publications', color: 'var(--subway-green)' },
+  { start: 'resume', end: 'resume', color: 'var(--subway-red)' }
+];
+
+// Get current page for "You are here" indicator
+const currentPath = Astro.url.pathname;
+const currentStation = stations.find(s => s.link === currentPath);
+---
+
+<div class="subway-map-container">
+  <svg width="1100" height="600" viewBox="0 0 1100 600" preserveAspectRatio="xMidYMid meet">
+    <!-- Background Elements -->
+    <rect x="0" y="0" width="1100" height="600" class="map-background" />
+    
+    <!-- Lines -->
+    {lines.map(line => {
+      const start = stations.find(s => s.id === line.start);
+      const end = stations.find(s => s.id === line.end);
+      return (
+        <line
+          x1={start.x}
+          y1={start.y}
+          x2={end.x}
+          y2={end.y}
+          class="subway-line"
+          style={`stroke: ${line.color}`}
+        />
+      );
+    })}
+
+    <!-- Stations -->
+    {stations.map(station => (
+      <a 
+        href={station.link} 
+        class="station-group" 
+        data-internal-link={!station.link.includes('.pdf')}
+        target={station.link.includes('.pdf') ? '_blank' : undefined}
+        rel={station.link.includes('.pdf') ? 'noopener noreferrer' : undefined}
+      >
+        <!-- Station Circle -->
+        <circle
+          cx={station.x}
+          cy={station.y}
+          r="20"
+          class={`station-circle ${currentStation?.id === station.id ? 'you-are-here' : ''}`}
+        />
+        
+        <!-- Interchange Symbol (if station has multiple lines) -->
+        {station.lines.length > 1 && (
+          <circle
+            cx={station.x}
+            cy={station.y}
+            r="24"
+            class="interchange-symbol"
+          />
+        )}
+
+        <!-- Route Markers -->
+        <g class="route-markers" transform={`translate(${station.x - ((station.lines.length * 30) / 2)}, ${station.y - 50})`}>
+          {station.lines.map((line, index) => (
+            <circle
+              cx={index * 30 + 15}
+              cy="0"
+              r="12"
+              class={`route-marker line-${line}`}
+            />
+          ))}
+        </g>
+
+        <!-- Station Name Box -->
+        <g class="station-label-group">
+          <rect
+            x={station.x - 120}
+            y={station.y - 274}
+            width="140"
+            height="50"
+            rx="5"
+            class="station-label-bg"
+          />
+          <text
+            x={station.x + 500}
+            y={station.y + 60}
+            text-anchor="middle"
+            class="station-label"
+          >
+            {station.name}
+          </text>
+        </g>
+      </a>
+    ))}
+  </svg>
+
+  <!-- Legend -->
+  <div class="subway-legend">
+    <div class="legend-title">Service Lines</div>
+    <div class="legend-item">
+      <span class="route-marker line-yellow"></span> Main Line
+    </div>
+    <div class="legend-item">
+      <span class="route-marker line-blue"></span> Projects Branch
+    </div>
+    <div class="legend-item">
+      <span class="route-marker line-green"></span> Publications Branch
+    </div>
+    <div class="legend-item">
+      <span class="route-marker line-red"></span> Resume Express
+    </div>
+  </div>
+</div>
+
+<style>
+  .subway-map-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: visible;
+    position: relative;
+  }
+
+  .map-background {
+    fill: #1a1a1a;
+  }
+
+  .subway-line {
+    stroke-width: 10;
+    stroke-linecap: round;
+  }
+
+  .station-circle {
+    fill: white;
+    stroke: #333;
+    stroke-width: 3;
+    transition: all 0.3s ease;
+  }
+
+  .station-circle.you-are-here {
+    fill: var(--subway-yellow);
+    animation: pulse 2s infinite;
+  }
+
+  .interchange-symbol {
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    pointer-events: none;
+  }
+
+  .route-marker {
+    stroke: #333;
+    stroke-width: 1;
+  }
+
+  .route-marker.line-yellow { fill: var(--subway-yellow); }
+  .route-marker.line-blue { fill: var(--subway-blue); }
+  .route-marker.line-green { fill: var(--subway-green); }
+  .route-marker.line-red { fill: var(--subway-red); }
+
+  .station-label-bg {
+    fill: #333;
+    stroke: var(--subway-yellow);
+    stroke-width: 1;
+    opacity: 0.9;
+  }
+
+  .station-label {
+    font-size: 18px;
+    fill: var(--subway-yellow);
+    font-weight: 500;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .station-group {
+    cursor: pointer;
+  }
+
+  .station-group:hover .station-circle {
+    fill: var(--subway-yellow);
+    stroke: white;
+    r: 24;
+  }
+
+  .subway-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(26, 26, 26, 0.9);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--subway-yellow);
+    transform: translateX(-20px);
+  }
+
+  .legend-title {
+    color: var(--subway-yellow);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    margin: 0.25rem 0;
+    white-space: nowrap;
+  }
+
+  .legend-item .route-marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+</style> 

@@ -1,0 +1,74 @@
+---
+interface Props {
+  stationName: string;
+}
+
+const { stationName } = Astro.props;
+const currentTime = new Date().toLocaleTimeString('en-US', { 
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true 
+});
+---
+
+<div class="arrival-board">
+  <div class="arrival-time">{currentTime}</div>
+  <div class="arrival-destination">
+    NOW ARRIVING AT:
+  </div>
+  <div class="station-name">
+    {stationName.toUpperCase()}
+  </div>
+  <div class="service-info">
+    STAND CLEAR OF THE CLOSING DOORS, PLEASE
+  </div>
+</div>
+
+<style>
+  .arrival-board {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+
+  .arrival-time {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .arrival-destination {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  .station-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .service-info {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+  }
+</style>
+
+<script>
+  // Update time every minute
+  setInterval(() => {
+    const timeElement = document.querySelector('.arrival-time');
+    if (timeElement) {
+      timeElement.textContent = new Date().toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+  }, 60000);
+</script> 

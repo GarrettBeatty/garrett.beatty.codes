@@ -1,34 +1,29 @@
-baseurl                  = "https://garrett.beatty.codes"           # Your domain name
-languageCode             = "en-us"
-defaultContentLanguage   = "en"
-isMultilingual           = false
-title                    = "Garrett Beatty"
-theme                    = "sam"    # pull in theme as hugo module 
-pygmentsStyle            = "monokai"                        # https://help.farbox.com/pygments.html
-pygmentsCodefences       = true
+baseURL = 'https://garrett.beatty.codes/'
+languageCode = 'en-us'
+title = 'Garrett Beatty'
+theme = 'nyc-subway'
 
 [params]
-    homepage             = "Home"                           # What to call the home page link, link will not be rendered if empty
-    footerText           = "Garrett Beatty"
+  description = "Welcome to Garrett Beatty's portfolio - Navigate through my projects, apps, and publications via the NYC subway-inspired interface"
+  author = "Garrett Beatty"
 
-[[params.videoBackground.sources]]
-    source  = "/nyc.mp4"
-    type    = "video/mp4"
-    poster  = "/background.png"
-[params.videoBackground]
-    overlay = "rgba(0, 0, 0, 0.4)" # optional
-
-[[params.mainMenu]]
-    link = "GarrettBeattyResume.pdf"
-    text = "Resume"
-
-[[params.mainMenu]]
-    link = "publications"
-    text = "Publications"
-
-[[params.mainMenu]]
-    link = "projects"
-    text = "Projects"
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+  [[menu.main]]
+    name = "Apps"
+    url = "/apps/"
+    weight = 3
+  [[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 4
 
 [imaging]
     quality = 75
