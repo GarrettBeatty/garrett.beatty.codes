@@ -1,400 +1,345 @@
-/* Subway Arrival Board */
-.arrival-board {
-  background: #000;
-  color: #FFD700;
-  font-family: 'Courier New', monospace;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 4px;
-  text-align: center;
-  animation: flicker 2s infinite;
-  width: 100%;
-  box-sizing: border-box;
-}
+/* Modern Manhattan Elements */
 
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.95; }
+/* Hero / Arrival Board - Now a minimal page header */
+.arrival-board {
+    background: transparent;
+    color: var(--color-white);
+    font-family: var(--font-sans);
+    padding: var(--space-xl) 0;
+    margin: 0;
+    border-radius: 0;
+    text-align: left;
+    animation: none;
+    border-bottom: 1px solid var(--color-dark-gray);
 }
 
 .arrival-board-time {
-  text-align: center;
-  margin-bottom: 0.5rem;
+    display: none;
 }
 
 .arrival-board-message {
-  text-align: center;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    display: none;
 }
 
-/* Subway Line Colors */
-.line-yellow { background-color: var(--subway-yellow); }
-.line-blue { background-color: var(--subway-blue); color: white; }
-.line-green { background-color: var(--subway-green); color: white; }
-.line-red { background-color: var(--subway-red); color: white; }
-
-/* Subway Map Elements */
-.interchange-symbol {
-  fill: white;
-  stroke: black;
-  stroke-width: 2;
-}
-
-.you-are-here {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-.route-marker {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  margin: 0 4px;
-}
-
-/* Interactive Elements */
-.turnstile {
-  width: 60px;
-  height: 60px;
-  background: #333;
-  border-radius: 50%;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.turnstile:hover {
-  transform: rotate(120deg);
-}
-
-/* Footer Elements */
-.subway-track {
-  height: 20px;
-  background: #333;
-  position: relative;
-  margin-top: 2rem;
-}
-
-.subway-track::before,
-.subway-track::after {
-  content: '';
-  position: absolute;
-  height: 4px;
-  background: #666;
-  left: 0;
-  right: 0;
-}
-
-.subway-track::before { top: 4px; }
-.subway-track::after { bottom: 4px; }
-
-.service-status {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  margin: 0 0.25rem;
-}
-
-.status-good { background: #00933C; color: white; }
-.status-delay { background: #FFD700; color: black; }
-.status-emergency { background: #EE352E; color: white; }
-
-.emergency-intercom {
-  background: #EE352E;
-  color: white;
-  padding: 1rem;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.emergency-intercom:hover {
-  background: #cc1c15;
-}
-
-/* Audio Elements */
-.subway-sound {
-  display: none;
-}
-
-/* Wayfinding Elements */
-.wayfinding-arrow {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background: #000;
-  clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%);
-  margin: 0 0.5rem;
-}
-
-.wayfinding-arrow::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  clip-path: polygon(70% 0, 100% 50%, 70% 100%);
-}
-
+/* Station Name / Page Title */
 .station-name {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--subway-yellow);
-  margin-bottom: 2rem;
-  transform-style: preserve-3d;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    margin: 0;
+    line-height: 1.1;
+    transform-style: flat;
 }
 
+.flip-title,
+.flip-inner,
+.flip-front {
+    transform: none;
+    perspective: none;
+    backface-visibility: visible;
+}
+
+.service-info {
+    display: none;
+}
+
+/* Cards - Clean minimal design */
 .project-card,
 .publication-card {
-  background-color: var(--subway-black);
-  border: 2px solid var(--subway-gray);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-dark-gray);
+    border-radius: 0;
+    padding: var(--space-lg) 0;
+    margin-bottom: 0;
+    transform-style: flat;
+    transition: none;
 }
 
 .project-card:hover,
 .publication-card:hover {
-  transform: translateZ(10px);
+    transform: none;
+    background: transparent;
+}
+
+.project-card:last-child,
+.publication-card:last-child {
+    border-bottom: none;
 }
 
 .project-title,
 .publication-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--subway-yellow);
-  margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.01em;
 }
 
 .project-description,
 .publication-description {
-  color: var(--subway-white);
-  margin-bottom: 1rem;
-  line-height: 1.6;
+    color: var(--color-light-gray);
+    margin-bottom: var(--space-sm);
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 .project-date,
 .publication-date {
-  color: var(--subway-gray);
-  font-size: 0.9rem;
-  transform-style: preserve-3d;
+    color: var(--color-gray);
+    font-size: 0.875rem;
+    transform-style: flat;
 }
 
 .project-links,
 .publication-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
 }
 
 .project-link,
 .publication-link {
-  color: var(--subway-yellow);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.2s;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
 }
 
 .project-link:hover,
 .publication-link:hover {
-  color: var(--subway-white);
+    color: var(--color-accent-light);
+}
+
+/* Route Markers - Simplified year badges */
+.route-marker {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-gray);
+    background: var(--color-dark-gray);
+    border-radius: 2px;
+    margin-right: var(--space-sm);
+}
+
+.route-marker.line-yellow,
+.route-marker.line-blue,
+.route-marker.line-green,
+.route-marker.line-red {
+    background: var(--color-dark-gray);
+    color: var(--color-light-gray);
 }
 
 /* Station Information */
 .station-information {
-  background: var(--subway-black);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  width: 100%;
-  box-sizing: border-box;
+    background: transparent;
+    padding: var(--space-lg) 0;
+    border-radius: 0;
+    margin: var(--space-lg) 0;
 }
 
 .station-information h2 {
-  color: var(--subway-yellow);
-  text-align: center;
-  margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    margin-bottom: var(--space-lg);
+    text-align: left;
 }
 
 .station-description {
-  color: var(--subway-text);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  text-align: left;
+    color: var(--color-light-gray);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    text-align: left;
+    font-size: 1.125rem;
 }
 
 .line-info {
-  background: var(--subway-tile);
-  padding: 1rem;
-  border-radius: 6px;
-  margin: 0.75rem 0;
-  border-left: 4px solid;
-  text-align: left;
+    background: transparent;
+    padding: var(--space-md) 0;
+    border-radius: 0;
+    margin: 0;
+    border-left: none;
+    border-bottom: 1px solid var(--color-dark-gray);
+    text-align: left;
+    color: var(--color-off-white);
 }
 
-.line-info.blue-line {
-  border-left-color: var(--subway-blue);
+.line-info:last-child {
+    border-bottom: none;
 }
 
-.line-info.green-line {
-  border-left-color: var(--subway-green);
-}
-
+.line-info.blue-line,
+.line-info.green-line,
 .line-info.red-line {
-  border-left-color: var(--subway-red);
+    border-left-color: transparent;
 }
 
-/* Mobile Responsive Styles */
+/* Hide subway-specific elements */
+.interchange-symbol,
+.you-are-here,
+.turnstile,
+.subway-track,
+.wayfinding-arrow,
+.subway-sound {
+    display: none;
+}
+
+/* Footer Status Elements - Simplified */
+.service-status {
+    display: none;
+}
+
+.status-good,
+.status-delay,
+.status-emergency {
+    display: none;
+}
+
+.emergency-intercom {
+    background: transparent;
+    color: var(--color-light-gray);
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--color-dark-gray);
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.emergency-intercom:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
+}
+
+/* Remove all animations */
+@keyframes flicker { }
+@keyframes pulse { }
+@keyframes blink { }
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .arrival-board {
-    padding: 0.75rem;
-    margin: 0.75rem 0;
-    font-size: 0.9rem;
-  }
+    .arrival-board {
+        padding: var(--space-lg) 0;
+    }
 
-  .arrival-board-message {
-    padding: 0 0.5rem;
-  }
+    .station-name {
+        font-size: 2.5rem;
+    }
 
-  .station-information {
-    padding: 1rem;
-    margin: 1rem 0;
-  }
+    .station-information {
+        padding: var(--space-md) 0;
+        margin: var(--space-md) 0;
+    }
 
-  .station-information h2 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
+    .station-information h2 {
+        font-size: 0.7rem;
+        margin-bottom: var(--space-md);
+    }
 
-  .station-description {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-    padding: 0 0.5rem;
-  }
+    .station-description {
+        font-size: 1rem;
+        margin-bottom: var(--space-md);
+    }
 
-  .line-info {
-    padding: 0.875rem;
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-  }
+    .line-info {
+        padding: var(--space-sm) 0;
+        font-size: 0.9rem;
+    }
 
-  .station-name {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    width: 100%;
-  }
+    .project-card,
+    .publication-card {
+        padding: var(--space-md) 0;
+    }
 
-  .project-card,
-  .publication-card {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
+    .project-title,
+    .publication-title {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-xs);
+    }
 
-  .project-title,
-  .publication-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    text-align: left;
-  }
+    .project-description,
+    .publication-description {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-xs);
+    }
 
-  .project-description,
-  .publication-description {
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
-    text-align: left;
-    padding: 0;
-  }
-
-  .project-links,
-  .publication-links {
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: flex-start;
-  }
+    .project-links,
+    .publication-links {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+    }
 }
 
 @media (max-width: 480px) {
-  .arrival-board {
-    padding: 0.625rem;
-    font-size: 0.85rem;
-  }
+    .arrival-board {
+        padding: var(--space-md) 0;
+    }
 
-  .station-information {
-    padding: 0.875rem;
-  }
+    .station-name {
+        font-size: 2rem;
+    }
 
-  .station-information h2 {
-    font-size: 1.125rem;
-  }
+    .station-information {
+        padding: var(--space-sm) 0;
+    }
 
-  .station-description {
-    font-size: 0.9rem;
-  }
+    .station-information h2 {
+        font-size: 0.65rem;
+    }
 
-  .line-info {
-    padding: 0.75rem;
-    font-size: 0.85rem;
-  }
+    .station-description {
+        font-size: 0.95rem;
+    }
 
-  .station-name {
-    font-size: 1.75rem;
-    margin: 0.75rem 0;
-    padding: 0 0.5rem;
-  }
+    .line-info {
+        padding: var(--space-xs) 0;
+        font-size: 0.85rem;
+    }
 
-  .project-card,
-  .publication-card {
-    padding: 0.875rem;
-    margin-bottom: 1rem;
-  }
+    .project-card,
+    .publication-card {
+        padding: var(--space-sm) 0;
+    }
 
-  .project-title,
-  .publication-title {
-    font-size: 1.125rem;
-  }
+    .project-title,
+    .publication-title {
+        font-size: 1.125rem;
+    }
 
-  .project-description,
-  .publication-description {
-    font-size: 0.9rem;
-  }
+    .project-description,
+    .publication-description {
+        font-size: 0.9rem;
+    }
 
-  .project-date,
-  .publication-date {
-    font-size: 0.8rem;
-    text-align: left;
-  }
+    .project-date,
+    .publication-date {
+        font-size: 0.8rem;
+    }
 }
 
-/* Optimize performance on mobile */
+/* Remove hover effects on touch devices */
 @media (pointer: coarse) {
-  .project-card,
-  .publication-card {
-    transition: none;
-  }
+    .project-card,
+    .publication-card {
+        transition: none;
+    }
 
-  .project-card:hover,
-  .publication-card:hover {
-    transform: none;
-  }
-} 
+    .project-card:hover,
+    .publication-card:hover {
+        transform: none;
+    }
+}

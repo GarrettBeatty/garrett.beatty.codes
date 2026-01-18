@@ -1,150 +1,226 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SubwayMap from '../components/SubwayMap.astro';
 ---
 
 <Layout title="Garrett Beatty">
-  <div class="subway-station-page">
-    <div class="platform-section map-section">
-      <div class="platform-content map-container">
-        <SubwayMap />
-      </div>
-    </div>
+  <div class="home-content">
+    <section class="intro-section">
+      <p class="intro-lead">Software engineer based in New York.</p>
+    </section>
 
-    <div class="platform-section info-section">
-      <h2>Station Information</h2>
-      <div class="platform-content">
-        <p>
-          Welcome to the main station of my personal website. This interactive space is designed to showcase
-          my work and experience through a NYC subway-inspired interface.
-        </p>
-        <ul>
-          <li>🚇 Projects Line (Blue): Explore my technical projects and applications</li>
-          <li>🚇 Publications Line (Green): Read my academic publications</li>
-          <li>🚇 Resume Express (Red): Direct route to my professional experience</li>
-        </ul>
+    <section class="links-section">
+      <div class="section-header">
+        <span class="section-label">Index</span>
+        <div class="section-line"></div>
       </div>
-    </div>
+      <div class="link-grid">
+        <a href="/projects" class="link-card" data-internal-link data-astro-prefetch="hover">
+          <span class="link-number">01</span>
+          <div class="link-content">
+            <span class="link-title">Projects</span>
+            <span class="link-description">Technical projects and applications</span>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="/publications" class="link-card" data-internal-link data-astro-prefetch="hover">
+          <span class="link-number">02</span>
+          <div class="link-content">
+            <span class="link-title">Publications</span>
+            <span class="link-description">Academic research and papers</span>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="/GarrettBeattyResume.pdf" class="link-card">
+          <span class="link-number">03</span>
+          <div class="link-content">
+            <span class="link-title">Resume</span>
+            <span class="link-description">Professional experience</span>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </section>
   </div>
 </Layout>
 
 <style>
-  .subway-station-page {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #1a1a1a;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .home-content {
+    max-width: 800px;
   }
 
-  .platform-section {
-    background: #262626;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    margin-top: 2rem;
+  /* Intro Section - Editorial Style */
+  .intro-section {
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--color-dark-gray);
   }
 
-  .platform-section:first-child {
-    margin-top: 0;
+  .intro-lead {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-style: italic;
+    color: var(--color-white);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.3;
   }
 
-  .platform-section h2 {
-    color: var(--subway-yellow);
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    text-align: center;
+  .intro-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-light-gray);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* Links Section */
+  .links-section {
+    padding-top: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    color: var(--color-gray);
+    white-space: nowrap;
   }
 
-  .platform-content {
-    background: #1a1a1a;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    color: #fff;
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-dark-gray);
   }
 
-  .map-container {
-    padding: 0;
-    overflow: hidden;
+  .link-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .platform-content p {
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+  .link-card {
+    display: flex;
+    align-items: center;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--color-dark-gray);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    gap: 2rem;
   }
 
-  .platform-content ul {
-    list-style: none;
-    padding: 0;
+  .link-card:first-child {
+    border-top: 1px solid var(--color-dark-gray);
   }
 
-  .platform-content li {
-    margin: 1rem 0;
-    padding: 1rem;
-    background: #262626;
-    border-radius: 0.5rem;
-    border-left: 4px solid var(--subway-yellow);
+  .link-card:hover {
+    padding-left: 1rem;
+    background: linear-gradient(90deg, rgba(201, 169, 98, 0.05) 0%, transparent 100%);
   }
 
-  /* Mobile styles */
+  .link-number {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--color-accent);
+    min-width: 2rem;
+  }
+
+  .link-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .link-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-white);
+    transition: color 0.2s ease;
+  }
+
+  .link-card:hover .link-title {
+    color: var(--color-accent);
+  }
+
+  .link-description {
+    font-size: 0.875rem;
+    color: var(--color-gray);
+  }
+
+  .link-arrow {
+    font-size: 1.25rem;
+    color: var(--color-gray);
+    transition: all 0.2s ease;
+  }
+
+  .link-card:hover .link-arrow {
+    color: var(--color-accent);
+    transform: translateX(4px);
+  }
+
   @media (max-width: 768px) {
-    .map-section {
-      display: none;
+    .intro-section {
+      padding-bottom: 3rem;
     }
 
-    .subway-station-page {
-      padding: 1rem;
-      margin: 0;
-      background: none;
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    .info-section {
-      background: none;
-      padding: 0;
-      margin: 0;
-      border-radius: 0;
-    }
-
-    .platform-content {
-      background: none;
-      padding: 0;
-      border-radius: 0;
-    }
-
-    .platform-content li {
-      background: var(--subway-tile);
-      margin: 0.75rem 0;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    .platform-section h2 {
+    .intro-lead {
       font-size: 1.5rem;
-      margin: 1rem 0;
     }
 
-    .platform-content p {
-      padding: 0;
-      margin-bottom: 1rem;
+    .intro-text {
+      font-size: 1rem;
+    }
+
+    .links-section {
+      padding-top: 3rem;
+    }
+
+    .link-card {
+      padding: 1.5rem 0;
+      gap: 1.5rem;
+    }
+
+    .link-title {
+      font-size: 1.25rem;
+    }
+
+    .link-number {
+      font-size: 0.8rem;
     }
   }
 
   @media (max-width: 480px) {
-    .subway-station-page {
-      padding: 0.75rem;
-    }
-
-    .platform-content li {
-      margin: 0.5rem 0;
-      padding: 0.75rem;
-    }
-
-    .platform-section h2 {
+    .intro-lead {
       font-size: 1.25rem;
     }
+
+    .intro-text {
+      font-size: 0.95rem;
+    }
+
+    .link-card {
+      padding: 1.25rem 0;
+      gap: 1rem;
+    }
+
+    .link-title {
+      font-size: 1.125rem;
+    }
+
+    .link-description {
+      font-size: 0.8rem;
+    }
+
+    .link-arrow {
+      display: none;
+    }
   }
-</style> 
+</style>

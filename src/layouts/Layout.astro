@@ -3,7 +3,6 @@ import '../styles/subway.css';
 import '../styles/subway-tiles.css';
 import '../styles/subway-elements.css';
 import { ViewTransitions } from 'astro:transitions';
-import ArrivalBoard from '../components/ArrivalBoard.astro';
 
 interface Props {
   title: string;
@@ -11,10 +10,10 @@ interface Props {
 
 const { title } = Astro.props;
 
-// Get current page for service status
+// Get current page for page title
 const currentPath = Astro.url.pathname;
-const pageName = currentPath === '/' ? 'Home' : 
-                 currentPath.split('/')[1].charAt(0).toUpperCase() + 
+const pageName = currentPath === '/' ? 'Garrett Beatty' :
+                 currentPath.split('/')[1].charAt(0).toUpperCase() +
                  currentPath.split('/')[1].slice(1);
 ---
 
@@ -22,49 +21,58 @@ const pageName = currentPath === '/' ? 'Home' :
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Garrett Beatty's Personal Website" />
+    <meta name="description" content="Garrett Beatty - Software Engineer" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions fallback="none" />
-    
-    <!-- Add subway sounds -->
-    <audio id="subway-doors" class="subway-sound" preload="auto">
-      <source src="/sounds/subway-doors.mp3" type="audio/mpeg">
-    </audio>
   </head>
   <body>
-    <div class="subway-container">
-      <header class="subway-header" transition:persist>
-        <div class="mta-logo">GB</div>
-        <nav class="subway-nav">
-          <a href="/" class="subway-line line-yellow" data-internal-link data-astro-prefetch="hover">Home</a>
-          <a href="/projects" class="subway-line line-blue" data-internal-link data-astro-prefetch="hover">Projects</a>
-          <a href="/publications" class="subway-line line-green" data-internal-link data-astro-prefetch="hover">Publications</a>
-          <a href="/GarrettBeattyResume.pdf" class="subway-line line-red">Resume</a>
+    <div class="site-container">
+      <header class="site-header" transition:persist>
+        <a href="/" class="site-logo" data-internal-link data-astro-prefetch="hover">
+          <span class="logo-text">GB</span>
+        </a>
+        <nav class="site-nav">
+          <a href="/" class="nav-link" data-internal-link data-astro-prefetch="hover">Home</a>
+          <a href="/projects" class="nav-link" data-internal-link data-astro-prefetch="hover">Projects</a>
+          <a href="/publications" class="nav-link" data-internal-link data-astro-prefetch="hover">Publications</a>
+          <a href="/GarrettBeattyResume.pdf" class="nav-link">Resume</a>
         </nav>
       </header>
 
-      <ArrivalBoard stationName={pageName} />
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1 class="page-title">{pageName}</h1>
+          <div class="header-accent"></div>
+        </div>
+      </div>
 
-      <main class="subway-main">
+      <main class="site-main">
         <slot />
       </main>
 
-      <footer class="subway-footer" transition:persist>
-        <div class="subway-track"></div>
-        <div class="service-status-container">
-          <span class="service-status status-good">All Lines Operating Normally</span>
-          <button class="emergency-intercom">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2v20M2 12h20"/>
-            </svg>
-            Emergency Contact
-          </button>
+      <footer class="site-footer" transition:persist>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <span class="footer-logo">GB</span>
+            <span class="footer-tagline">New York</span>
+          </div>
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/garrett-beatty/" class="footer-link" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a href="https://github.com/garrettbeatty" class="footer-link" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
         </div>
-        <div class="subway-info">
-          © 2024 Garrett Beatty. All rights reserved.
+        <div class="footer-bottom">
+          <span class="footer-copyright">© 2024 Garrett Beatty</span>
         </div>
       </footer>
     </div>
@@ -72,177 +80,301 @@ const pageName = currentPath === '/' ? 'Home' :
 </html>
 
 <style>
-  .subway-container {
-    overflow-x: hidden;
+  .site-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .site-header {
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-dark-gray);
+    position: sticky;
+    top: 0;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+  }
+
+  .site-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-white);
+    transition: color 0.2s ease;
+  }
+
+  .site-logo:hover .logo-text {
+    color: var(--color-accent);
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--color-light-gray);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-white);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Page Header - NYC Editorial Style */
+  .page-header {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--color-dark-gray);
     position: relative;
   }
 
-  .subway-main {
+  .page-header-content {
     position: relative;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .header-accent {
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-accent);
+  }
+
+  /* Main Content */
+  .site-main {
+    flex: 1;
+    padding: 3rem 0;
+  }
+
+  /* Footer - NYC Style */
+  .site-footer {
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--color-dark-gray);
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-white);
+  }
+
+  .footer-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-link {
+    color: var(--color-light-gray);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-dark-gray);
+  }
+
+  .footer-copyright {
+    color: var(--color-gray);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .site-container {
+      padding: 0 1rem;
+    }
+
+    .site-header {
+      flex-direction: column;
+      height: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .site-nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.7rem;
+    }
+
+    .page-header {
+      padding: 3rem 0 2.5rem;
+    }
+
+    .page-title {
+      font-size: 3rem;
+    }
+
+    .header-accent {
+      width: 30px;
+      height: 2px;
+      top: -0.75rem;
+    }
+
+    .site-main {
+      padding: 2rem 0;
+    }
+
+    .footer-grid {
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .site-footer {
+      padding: 2rem 0 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .site-container {
+      padding: 0 0.75rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
+    }
+
+    .site-nav {
+      gap: 1rem;
+    }
+
+    .footer-links {
+      gap: 1.5rem;
+    }
   }
 </style>
 
 <script>
   import gsap from 'gsap';
-  import { Flip } from 'gsap/Flip';
 
-  gsap.registerPlugin(Flip);
-
-  let isTransitioning = false;
   let currentPath = window.location.pathname;
-  let nextPageContent = null;
 
-  // Preload function
-  async function preloadPage(url) {
-    try {
-      const response = await fetch(url);
-      const text = await response.text();
-      const parser = new DOMParser();
-      return parser.parseFromString(text, 'text/html');
-    } catch (error) {
-      console.error('Error preloading page:', error);
-      return null;
-    }
-  }
-
-  // Handle internal navigation
+  // Handle internal navigation with subtle fade
   document.addEventListener('click', async (e) => {
     const link = e.target.closest('a[data-internal-link]');
     if (link && link.href) {
       const newPath = new URL(link.href).pathname;
-      // Only trigger transition if we're navigating to a different page
       if (newPath !== currentPath) {
         e.preventDefault();
-        startPageTransition(link.href);
+
+        // Subtle fade out
+        gsap.to('.site-main', {
+          opacity: 0,
+          y: 10,
+          duration: 0.2,
+          ease: "power2.in",
+          onComplete: () => {
+            window.location.href = link.href;
+          }
+        });
       } else {
-        // Prevent default when clicking current page
         e.preventDefault();
       }
     }
   });
 
-  // Preload pages on hover
-  document.querySelectorAll('a[data-internal-link]').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      const url = link.href;
-      if (url !== window.location.href) {
-        preloadPage(url);
-      }
-    });
-  });
-
-  async function startPageTransition(newUrl) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    // Get all current cards and title
-    const currentCards = document.querySelectorAll('.project-card, .publication-card');
-    const currentTitle = document.querySelector('.station-name');
-    
-    // Create a FLIP state
-    const state = Flip.getState([...currentCards, currentTitle]);
-
-    // Start preloading the next page
-    preloadPage(newUrl);
-
-    // Animate title flipping out
-    gsap.to(currentTitle, {
-      rotationX: 90,
-      opacity: 0,
-      duration: 0.4,
-      ease: "power2.in"
-    });
-
-    // Animate all cards flipping out
-    await gsap.to(currentCards, {
-      rotationX: 90,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: "power2.in",
-      delay: 0.2 // Start after title begins flipping
-    });
-
-    // Navigate to new page
-    window.location.href = newUrl;
-  }
-
-  // Handle transition events
-  document.addEventListener('astro:before-preparation', (e) => {
-    // Preload the next page's content
-    preloadPage(e.to);
-  });
-
-  document.addEventListener('astro:before-swap', () => {
-    if (isTransitioning) {
-      document.body.classList.add('transition-active');
-    }
-  });
-
+  // Fade in on page load
   document.addEventListener('astro:after-swap', () => {
-    // Get new cards and title
-    const newCards = document.querySelectorAll('.project-card, .publication-card');
-    const newTitle = document.querySelector('.station-name');
-    
-    // Set initial state for new elements
-    gsap.set([newCards, newTitle], {
-      rotationX: -90,
-      opacity: 0
-    });
-
-    // Ensure GSAP animations are properly initialized
-    gsap.registerPlugin(Flip);
-
-    // Animate title flipping in
-    gsap.to(newTitle, {
-      rotationX: 0,
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out"
-    });
-
-    // Animate new cards flipping in
-    gsap.to(newCards, {
-      rotationX: 0,
-      opacity: 1,
-      duration: 0.6,
-      stagger: 0.1,
-      delay: 0.2, // Start after title begins flipping
-      ease: "power2.out",
-      onComplete: () => {
-        isTransitioning = false;
-        document.body.classList.remove('transition-active');
-      }
-    });
-
-    // Play doors sound
-    setTimeout(() => {
-      const doors = document.getElementById('subway-doors');
-      doors?.play();
-    }, 300);
-
+    gsap.fromTo('.site-main',
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+    );
     currentPath = window.location.pathname;
   });
 
-  // Handle browser back/forward navigation
-  window.addEventListener('popstate', () => {
-    const newPath = window.location.pathname;
-    if (newPath !== currentPath) {
-      startPageTransition(window.location.href);
-    }
+  // Initial page load animation
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.fromTo('.site-main',
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", delay: 0.1 }
+    );
   });
-
-  // Emergency intercom handler
-  document.querySelector('.emergency-intercom')?.addEventListener('click', () => {
-    window.location.href = 'https://www.linkedin.com/in/garrett-beatty/';
-  });
-
-  // Preload initial pages
-  window.addEventListener('load', () => {
-    document.querySelectorAll('a[data-internal-link]').forEach(link => {
-      if (link.href !== window.location.href) {
-        preloadPage(link.href);
-      }
-    });
-  });
-</script> 
+</script>

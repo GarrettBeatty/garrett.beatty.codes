@@ -3,212 +3,204 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Projects - Garrett Beatty">
-  <div class="subway-station-page">
-    <div class="platform-section">
-      <h2>Featured Projects</h2>
-      <div class="platform-content">
-        <div class="project-card flip-card" data-year="2023">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="project-header">
-                <span class="route-marker line-blue">2023</span>
-                <h3>Arxiv Explorer</h3>
-              </div>
-              <p class="project-type">
-                Android Application
-              </p>
-              <p class="description">
-                Android application with over 6,000 downloads that allows users to browse, search, and download
-                scientific papers from arxiv.org.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-tag">Java</span>
-                <span class="tech-tag">Butterknife</span>
-                <span class="tech-tag">OkHttp</span>
-                <span class="tech-tag">Sugar ORM</span>
-                <span class="tech-tag">arXiv API</span>
-                <span class="tech-tag">Travis CI</span>
-                <span class="tech-tag">Fastlane</span>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="projects-content">
+    <div class="section-header">
+      <span class="section-label">Featured Work</span>
+      <div class="section-line"></div>
+    </div>
 
-        <div class="project-card flip-card" data-year="2022">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="project-header">
-                <span class="route-marker line-blue">2022</span>
-                <h3>Steganography Web Application</h3>
-              </div>
-              <p class="project-type">
-                Web Application
-              </p>
-              <p class="description">
-                Web application that allows users encode and decode secret messages within an image.
-              </p>
-              <div class="tech-stack">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Flask</span>
-                <span class="tech-tag">Heroku</span>
-                <span class="tech-tag">Travis CI</span>
-                <span class="tech-tag">numpy</span>
-              </div>
-            </div>
-          </div>
+    <article class="project-item">
+      <div class="project-number">01</div>
+      <div class="project-main">
+        <div class="project-meta">
+          <span class="project-year">2023</span>
+          <span class="meta-divider">·</span>
+          <span class="project-type">Android Application</span>
+        </div>
+        <h3 class="project-name">Arxiv Explorer</h3>
+        <p class="project-description">
+          Android application with over 6,000 downloads that allows users to browse, search, and download
+          scientific papers from arxiv.org.
+        </p>
+        <div class="project-tech">
+          <span>Java</span>
+          <span>Butterknife</span>
+          <span>OkHttp</span>
+          <span>Sugar ORM</span>
+          <span>arXiv API</span>
+          <span>Travis CI</span>
+          <span>Fastlane</span>
         </div>
       </div>
-    </div>
+    </article>
+
+    <article class="project-item">
+      <div class="project-number">02</div>
+      <div class="project-main">
+        <div class="project-meta">
+          <span class="project-year">2022</span>
+          <span class="meta-divider">·</span>
+          <span class="project-type">Web Application</span>
+        </div>
+        <h3 class="project-name">Steganography Web Application</h3>
+        <p class="project-description">
+          Web application that allows users encode and decode secret messages within an image.
+        </p>
+        <div class="project-tech">
+          <span>Python</span>
+          <span>Flask</span>
+          <span>Heroku</span>
+          <span>Travis CI</span>
+          <span>numpy</span>
+        </div>
+      </div>
+    </article>
   </div>
 </Layout>
 
 <style>
-  .subway-station-page {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #1a1a1a;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .projects-content {
+    max-width: 800px;
   }
 
-  .platform-section {
-    background: #262626;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    margin-top: 2rem;
-  }
-
-  .platform-section:first-child {
-    margin-top: 0;
-  }
-
-  .platform-section h2 {
-    color: var(--subway-yellow);
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .platform-content {
-    background: #1a1a1a;
-    padding: 2rem;
-    border-radius: 0.5rem;
-  }
-
-  .project-card {
-    background: #262626;
-    border-radius: 0.5rem;
-    padding: 2rem;
-    color: white;
-    border-left: 4px solid var(--subway-blue);
-    margin-bottom: 2rem;
-  }
-
-  .project-card:last-child {
-    margin-bottom: 0;
-  }
-
-  .project-header {
+  .section-header {
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
-  .project-header h3 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--subway-blue);
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-dark-gray);
+  }
+
+  .project-item {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-dark-gray);
+  }
+
+  .project-item:first-of-type {
+    border-top: 1px solid var(--color-dark-gray);
+  }
+
+  .project-number {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--color-accent);
+    min-width: 2rem;
+    padding-top: 0.25rem;
+  }
+
+  .project-main {
     flex: 1;
   }
 
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-year {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+  }
+
+  .meta-divider {
+    color: var(--color-gray);
+  }
+
   .project-type {
-    font-size: 1.1rem;
-    margin: 0.5rem 0;
-    color: var(--subway-text);
+    font-size: 0.75rem;
+    color: var(--color-gray);
+    letter-spacing: 0.02em;
   }
 
-  .description {
-    color: var(--subway-text);
-    margin: 0.5rem 0;
+  .project-name {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-white);
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
 
-  .tech-stack {
-    margin-top: 1.5rem;
+  .project-description {
+    color: var(--color-light-gray);
+    line-height: 1.7;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .project-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
   }
 
-  .tech-tag {
-    background: #333;
-    color: var(--subway-text);
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.9rem;
-    border: 1px solid var(--subway-blue);
+  .project-tech span {
+    font-size: 0.7rem;
+    color: var(--color-gray);
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--color-dark-gray);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 
-  .flip-card {
-    perspective: 1000px;
-    opacity: 0;
-    transform: rotateX(-90deg);
-    transform-origin: top;
+  @media (max-width: 768px) {
+    .project-item {
+      padding: 2rem 0;
+      gap: 1.5rem;
+    }
+
+    .project-name {
+      font-size: 1.5rem;
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+    }
   }
 
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
+  @media (max-width: 480px) {
+    .project-item {
+      flex-direction: column;
+      padding: 1.5rem 0;
+      gap: 0.5rem;
+    }
 
-  .card-front {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-  }
+    .project-number {
+      padding-top: 0;
+    }
 
-  .route-marker {
-    background: var(--subway-blue);
-    border-radius: 4px;
-    padding: 4px 12px;
-    font-family: monospace;
-    font-size: 1.2rem;
-    color: #fff;
-    display: inline-block;
+    .project-name {
+      font-size: 1.25rem;
+    }
+
+    .project-description {
+      font-size: 0.9rem;
+    }
+
+    .project-tech span {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.5rem;
+    }
   }
 </style>
-
-<script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.flip-card');
-    
-    cards.forEach((card, index) => {
-      gsap.to(card, {
-        rotationX: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top bottom-=100",
-          end: "top center",
-          toggleActions: "play none none reverse"
-        },
-        delay: index * 0.2 // Stagger the animations
-      });
-    });
-  });
-</script> 
